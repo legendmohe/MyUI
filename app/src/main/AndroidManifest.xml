@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.legendmohe.myui"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:name=".MyUiApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".StickyTabActivity"
+            android:label="@string/title_activity_sticky_tab"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".AnimationActivity">
+        </activity>
+        <activity android:name=".RotateZCircleActivity">
+        </activity>
+        <activity android:name=".CentripetalParticleActivity">
+        </activity>
+        <activity android:name=".RubberViewActivity">
+        </activity>
+        <activity android:name=".CentripetalParticle2Activity">
+        </activity>
+        <activity android:name=".TopSheetActivity">
+        </activity>
+        <activity android:name=".binder.BinderActivity">
+        </activity>
+        <activity android:name=".recycle.RecycleViewActivity">
+        </activity>
+        <activity android:name=".navigator.NavigatorMainActivity">
+        </activity>
+        <activity android:name=".navigator.NavigatorDetailActivity">
+        </activity>
+    </application>
+
+</manifest>

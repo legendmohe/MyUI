@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TopSheetActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_gravity="center_horizontal"
+            android:onClick="intro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="介绍"/>
+
+        <Button
+            android:onClick="intro2"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="选择"/>
+
+    </LinearLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="50dp"
+        app:layout_behavior="com.legendmohe.myui.TopSheetBehavior"
+        >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="900dp"
+                android:padding="50dp"
+                android:background="@color/colorPrimary"
+                android:text="人不会死在绝境，却往往栽在十字路口"
+                android:textColor="@android:color/white"/>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="50dp"
+        app:layout_behavior="@string/bottom_sheet_behavior"
+        >
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="900dp"
+                android:padding="50dp"
+                android:background="@color/colorPrimary"
+                android:text="人不会死在绝境，却往往栽在十字路口"
+                android:textColor="@android:color/white"/>
+
+        </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>

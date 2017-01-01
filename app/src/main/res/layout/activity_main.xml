@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    tools:context="com.legendmohe.myui.MainActivity">
+
+        <GridLayout
+            android:id="@+id/container_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:rowCount="5"
+            android:columnCount="3"
+            >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="bottom"
+                android:id="@+id/bottom_sheet_button"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="bottom2"
+                android:id="@+id/bottom_sheet_button2"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="bottom3"
+                android:id="@+id/bottom_sheet_button3"
+                android:layout_weight="1"/>
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New ToggleButton"
+                android:id="@+id/toggleButton"
+                android:textOff="1212"
+                android:textOn="3434"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="animation"
+                android:id="@+id/animation_button"
+                android:layout_weight="1"/>
+
+            <com.legendmohe.myui.FontableTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Font Font"
+                android:id="@+id/textView"
+                android:textAlignment="center"
+                app:font="NarrBlack.otf"
+                android:textSize="32sp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="drawable"
+                android:id="@+id/custom_drawable"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="rotateCircle"
+                android:id="@+id/rotate_circle_view"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CentripetalCircle"
+                android:id="@+id/centripetal_view"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RubberView"
+                android:id="@+id/rubberView_view"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CentripetalCircle2"
+                android:id="@+id/centripetal2_view"
+                android:layout_weight="1"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TopSheet"
+                android:id="@+id/topsheet_button"
+                android:layout_weight="1"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Binder"
+                android:id="@+id/binder_button"
+                android:layout_weight="1"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RecycleView"
+                android:id="@+id/recycle_button"
+                android:layout_weight="1"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Navigator"
+                android:id="@+id/navigator_button"
+                android:layout_weight="1"/>
+        </GridLayout>
+
+    <ImageView
+        android:id="@+id/center_imageview"
+        android:src="@mipmap/ic_avatar"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_centerInParent="true"/>
+
+    <!--<FrameLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/bottom_sheet"-->
+        <!--app:behavior_hideable="true"-->
+        <!--app:layout_behavior="android.support.design.widget.BottomSheetBehavior"-->
+        <!--style="@style/Widget.Design.BottomSheet.Modal">-->
+        <!--<include layout="@layout/sheet_content" />-->
+        <!--</FrameLayout>-->
+
+
+</RelativeLayout>
