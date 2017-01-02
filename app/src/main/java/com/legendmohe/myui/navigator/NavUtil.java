@@ -2,6 +2,8 @@ package com.legendmohe.myui.navigator;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -15,11 +17,11 @@ import java.util.Map;
  * Created by legendmohe on 2016/12/26.
  */
 
-public class ActivityNavigator {
+public class NavUtil {
 
     public static boolean DEBUG = false;
 
-    private static final String TAG = "ActivityNavigator";
+    private static final String TAG = "NavUtil";
 
     public static final int ACTIVITY_STATE_CREATED = 0;
     public static final int ACTIVITY_STATE_STARTED = 1;
@@ -37,14 +39,14 @@ public class ActivityNavigator {
     //////////////////////////////////////////////////////////////////////
 
     private static class LazyHolder {
-        private static final ActivityNavigator INSTANCE = new ActivityNavigator();
+        private static final NavUtil INSTANCE = new NavUtil();
     }
 
-    public static ActivityNavigator getInstance() {
+    public static NavUtil getInstance() {
         return LazyHolder.INSTANCE;
     }
 
-    private ActivityNavigator() {
+    private NavUtil() {
         mActivityItems = new ArrayList<>();
         mActivityMap = new HashMap<>();
     }
@@ -73,7 +75,7 @@ public class ActivityNavigator {
             }
             for (ActivityItem item :
                     mActivityItems) {
-                if (item.activity.get().equals(activity)) {
+                if (checkActivityReferenceExisted(item) && item.activity.get().equals(activity)) {
                     item.state = ACTIVITY_STATE_STARTED;
                     break;
                 }
@@ -87,7 +89,7 @@ public class ActivityNavigator {
             }
             for (ActivityItem item :
                     mActivityItems) {
-                if (item.activity.get().equals(activity)) {
+                if (checkActivityReferenceExisted(item) && item.activity.get().equals(activity)) {
                     item.state = ACTIVITY_STATE_RESUMED;
                     break;
                 }
@@ -101,7 +103,7 @@ public class ActivityNavigator {
             }
             for (ActivityItem item :
                     mActivityItems) {
-                if (item.activity.get().equals(activity)) {
+                if (checkActivityReferenceExisted(item) && item.activity.get().equals(activity)) {
                     item.state = ACTIVITY_STATE_PAUSED;
                     break;
                 }
@@ -115,7 +117,7 @@ public class ActivityNavigator {
             }
             for (ActivityItem item :
                     mActivityItems) {
-                if (item.activity.get().equals(activity)) {
+                if (checkActivityReferenceExisted(item) && item.activity.get().equals(activity)) {
                     item.state = ACTIVITY_STATE_STOPPED;
                     break;
                 }
@@ -129,7 +131,7 @@ public class ActivityNavigator {
             }
             for (ActivityItem item :
                     mActivityItems) {
-                if (item.activity.get().equals(activity)) {
+                if (checkActivityReferenceExisted(item) && item.activity.get().equals(activity)) {
                     item.state = ACTIVITY_STATE_SAVE_INSTANCE_STATE;
                     break;
                 }
@@ -150,7 +152,8 @@ public class ActivityNavigator {
 //            }
             int mark = -1;
             for (int i = mActivityItems.size() - 1; i >= 0; i--) {
-                if (mActivityItems.get(i).activity.get().equals(activity)) {
+                if (checkActivityReferenceExisted(i)
+                        && mActivityItems.get(i).activity.get().equals(activity)) {
                     mark = i;
                     break;
                 }
@@ -164,6 +167,39 @@ public class ActivityNavigator {
 
     //////////////////////////////////////////////////////////////////////
 
+    public static Application getApplication() {
+        return getInstance().mApplication.get();
+    }
+
+    public static Activity getCurrentActivity() {
+        List<ActivityItem> temp = new ArrayList<>(getInstance().mActivityItems);
+        return temp.get(temp.size() - 1).activity.get();
+    }
+
+    public static void startActivity(Class<? extends Activity> target) {
+        startActivity(target, null);
+    }
+
+    public static void startActivity(Class<? extends Activity> target, Bundle extras) {
+        startActivity(getInstance().mApplication.get(), target, extras);
+    }
+
+    public static void startActivity(Context parent, Class<? extends Activity> target) {
+        startActivity(parent, target, null);
+    }
+
+    public static void startActivity(Context parent, Class<? extends Activity> target, Bundle extras) {
+        if (parent == null || target == null) {
+            return;
+        }
+
+        Intent intent = new Intent(parent, target);
+        if (extras != null && extras.size() != 0) {
+            intent.putExtras(extras);
+        }
+        parent.startActivity(intent);
+    }
+
     public static void popTo(Class<? extends Activity> targetActivity) {
         getInstance().popToActivity(targetActivity);
     }
@@ -176,9 +212,11 @@ public class ActivityNavigator {
         boolean existed = false;
         //
         for (int i = mActivityItems.size() - 2; i >= 0; i--) {
-            if (mActivityItems.get(i).activity.get().getClass().equals(targetActivity)) {
-                existed = true;
-                break;
+            if (checkActivityReferenceExisted(i)) {
+                if (mActivityItems.get(i).activity.get().getClass().equals(targetActivity)) {
+                    existed = true;
+                    break;
+                }
             }
         }
         if (existed) {
@@ -193,11 +231,21 @@ public class ActivityNavigator {
         }
     }
 
+    private boolean checkActivityReferenceExisted(int index) {
+        return mActivityItems.get(index).activity.get() != null;
+    }
+
+    private boolean checkActivityReferenceExisted(ActivityItem item) {
+        return item.activity.get() != null;
+    }
+
     public String dump() {
         StringBuffer sb = new StringBuffer();
         for (ActivityItem item :
                 mActivityItems) {
-            sb.append("| ").append(item.activity.get()).append(" -> ").append(item.state).append("\n");
+            if (checkActivityReferenceExisted(item)) {
+                sb.append("| ").append(item.activity.get()).append(" -> ").append(item.state).append("\n");
+            }
         }
         return sb.toString();
     }

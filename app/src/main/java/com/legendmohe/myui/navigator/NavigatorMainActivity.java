@@ -32,7 +32,7 @@ public class NavigatorMainActivity extends AppCompatActivity {
 
     @OnClick(R.id.pop_button)
     public void onPopClick() {
-        ActivityNavigator.popTo(NavigatorDetailActivity.class);
+        NavUtil.popTo(NavigatorDetailActivity.class);
     }
 
     @OnClick(R.id.detail_button)

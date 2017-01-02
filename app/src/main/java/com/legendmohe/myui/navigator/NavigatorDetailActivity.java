@@ -25,7 +25,7 @@ public class NavigatorDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.pop_button)
     public void onPopClick() {
-        ActivityNavigator.getInstance().popTo(NavigatorMainActivity.class);
+        NavUtil.getInstance().popTo(NavigatorMainActivity.class);
     }
 
     @OnClick(R.id.main_button)

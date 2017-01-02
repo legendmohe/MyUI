@@ -2,7 +2,7 @@ package com.legendmohe.myui;
 
 import android.app.Application;
 
-import com.legendmohe.myui.navigator.ActivityNavigator;
+import com.legendmohe.myui.navigator.NavUtil;
 
 /**
  * Created by legendmohe on 2016/12/26.
@@ -14,7 +14,7 @@ public class MyUiApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        ActivityNavigator.init(this);
-        ActivityNavigator.DEBUG = true;
+        NavUtil.init(this);
+        NavUtil.DEBUG = true;
     }
 }
