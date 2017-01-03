@@ -39,4 +39,9 @@ public class NavigatorMainActivity extends AppCompatActivity {
     public void onDetailClick() {
         startActivity(new Intent(this, NavigatorDetailActivity.class));
     }
+
+    @OnClick(R.id.login_button)
+    public void onLoginClick() {
+        startActivity(new Intent(this, NavigatorLoginActivity.class));
+    }
 }

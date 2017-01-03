@@ -176,6 +176,22 @@ public class NavUtil {
         return temp.get(temp.size() - 1).activity.get();
     }
 
+    //////////////////////////////////////////////////////////////////////
+
+    public static void startActivityClearTask(Class<? extends Activity> target, Bundle extras) {
+        Context parent = getInstance().mApplication.get();
+        if (parent != null) {
+            Intent intent = new Intent(parent, target);
+            if (extras != null && extras.size() != 0) {
+                intent.putExtras(extras);
+            }
+            // set params
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            //
+            parent.startActivity(intent);
+        }
+    }
+
     public static void startActivity(Class<? extends Activity> target) {
         startActivity(target, null);
     }
